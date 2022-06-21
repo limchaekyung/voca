@@ -1,19 +1,20 @@
 import { useState } from "react";
+import UserName from "./UserName";
 
-export default function Hello() {
+export default function Hello({ age }) {
     // let name = "Mike"
     const [name, setName] = useState('Mike')
-
-    function changeName() {
-        const newName = name === "Mike" ? "Jane" : "Mike";
-        // document.querySelector('h2').innerText = name
-        setName(newName)
-    }
+    const msg = age > 19 ? "성인입니다." : "미성년자입니다."
 
     return (
         <div>
-            <h2>{name}</h2>
-            <button onClick={changeName}>Change</button>
+            <h2 id="name">
+                {name}({age}세) : {msg}
+            </h2>
+            <UserName name={name} />
+            <button onClick={() => {
+                setName(name === "Mike" ? "Jane" : "Mike")
+            }}>Change</button>
         </div>
     )
 }
